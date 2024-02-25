@@ -1,0 +1,11 @@
+.block {
+  padding-left: 40px;
+}
+input {
+  font-size: medium;
+}
+.btnAdd {
+  margin-top: 20px;
+  padding: 5px 15px;
+  font-size: medium;
+}
