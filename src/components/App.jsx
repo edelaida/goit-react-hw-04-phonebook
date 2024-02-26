@@ -30,39 +30,30 @@ export const App = () => {
     },
   ]);
 
-  // const handleDelete = nameId => {
-  //   prev => ({
-  //        contacts: prev.contacts.filter(contact => contact.id !== nameId),
-  //      })
-  //   setContacts(prev) => ({
-  //     contacts: prev.contacts.filter(contact => contact.id !== nameId),
-  //   });
-  //};
-
-  const handleSubmitInput = data => {
-    // contacts.some(elem => elem.name === data.name)
-    //   ? alert(`${data.name} is alredy in contacts`):
-    prev(prev => {
-      return {
-        contacts: [
-          ...prev.contacts,
-          {
-            name: data.name,
-            number: data.number,
-            id: uuidv4(),
-          },
-        ],
-      };
+  const handleDelete = id => {
+    setContacts(prev => {
+      return prev.filter(contact => contact.id !== id);
     });
   };
 
+  const handleSubmitInput = data => {
+    contacts.some(elem => elem.name === data.name)
+      ? alert(`${data.name} is alredy in contacts`)
+      : setContacts(prev => {
+          return [
+            ...prev,
+            { name: data.name, number: data.number, id: uuidv4() },
+          ];
+        });
+  };
+
   const handleFilter = e => {
-    ({ filter: e.target.value });
+    setFilter({ filter: e.target.value });
     console.log(e.target.value);
   };
 
-  handleVisibleForm = () => {
-    return contacts.filter(contacts =>
+  const filterPerson = () => {
+    return setFilter(contacts =>
       contacts.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
